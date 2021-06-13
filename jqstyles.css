@@ -1,0 +1,63 @@
+.member {
+  border-bottom: 2px dashed rgb(163, 247, 152);
+  margin: 0px;
+  padding-bottom: 10px;
+  padding-top: 10pxs;
+}
+
+.address {
+  margin-top: -40px;
+  margin-bottom: -30px;
+  padding: 10px;
+}
+.heading {
+  background-color: #e27d60;
+  padding: 20px;
+  width: 100%;
+  color: white;
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.btn {
+  background-color: #e27d60;
+  padding: 0.25em 2em;
+  color: white;
+  text-transform: uppercase;
+}
+
+.btn-edit {
+  margin-right: 20px;
+}
+
+.btn-add {
+  background-color: #e27d60;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.width {
+  width: 70%;
+  display: inline;
+}
+.btn-addp {
+  font-size: 14px;
+  background-color: rgb(163, 247, 152);
+  color: black;
+  padding: 0.1em 1em;
+  text-transform: none;
+  float: right;
+}
+
+.btnx {
+  display: inline;
+  background-color: none;
+  color: red;
+  font-weight: bold;
+  background: none;
+  border: none;
+}
+
+.error {
+  border: 1px solid red;
+}

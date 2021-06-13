@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./jquery-3.4.1.min.js"></script>
+    <script src="./popper.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script src="jqcrud.js"></script>
+    <link rel="stylesheet" href="./bootstrap.min.css" />
+    <link rel="stylesheet" href="./jqstyles.css" />
+</head>
+
+<body>
+    <div class="heading fluid-container">
+        <h3>Faculty Data</h3>
+    </div>
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-add" data-toggle="modal" data-target="#addModal">
+            Add Faculty Member
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Add New Faculty Member</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name">ID</label>
+                            <input type="text" class="form-control" name="idts" id="idts" aria-describedby="nameHelp"
+                                placeholder="ID" />
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" aria-describedby="nameHelp"
+                                placeholder="Name of the faculty member" />
+                            <small id="nameHelp" class="form-text text-muted">Enter name of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" class="form-control" name="age" id="age" aria-describedby="ageHelp"
+                                min="0" max="70" />
+                            <small id="ageHelp" class="form-text text-muted">Enter age of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" name="gender" id="gender" aria-describedby="genderHelp">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <small id="nameHelp" class="form-text text-muted">Select gender of the faculty
+                                member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                aria-describedby="emailHelp" placeholder="admin@arose-niazi.me" />
+                            <small id="emailHelp" class="form-text text-muted">Enter email of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Address Country</label>
+                            <input type="text" class="form-control" name="country" id="country"
+                                aria-describedby="countryHelp" placeholder="Pakistan" />
+                            <small id="countryHelp" class="form-text text-muted">Enter country for the address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">Address City</label>
+                            <input type="text" class="form-control" name="city" id="city" aria-describedby="cityHelp"
+                                placeholder="Lahore" />
+                            <small id="cityHelp" class="form-text text-muted">Enter city for the address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="street_address">Address</label>
+                            <input type="text" class="form-control" name="street_address" id="street_address"
+                                aria-describedby="street_addressHelp" placeholder="Billokhel H# 137M" />
+                            <small id="street_addressHelp" class="form-text text-muted">Enter street address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_numbers">Phone Numbers
+
+                            </label>
+                            <button class="btn btn-addp" onclick="addInput()">Add</button>
+
+                            <div id="new_chq">
+                                <div class="remove"><input type="text" class="form-control width" name="phone_numbers"
+                                        id="phone_numbers" aria-describedby="phone_numbersHelp"
+                                        placeholder="Phone number" /><button class="btnx" onclick="remove(event)"
+                                        style="color:red">x</button>
+                                </div>
+
+                            </div>
+                            <!-- <small id="phone_numbersHelp" class="form-text text-muted">Enter phone numbers use comma to
+                            seprate
+                        </small> -->
+                        </div>
+                        <div class="form-group">
+                            <label for="course_code">Course Code</label>
+                            <select class="form-control" name="course_code" id="course_code"
+                                aria-describedby="course_codeHelp">
+                                <option>CSE100</option>
+                                <option>CSE200</option>
+                                <option>HUM100</option>
+                                <option>EE101</option>
+                                <option>MTH300</option>
+                            </select>
+                            <small id="nameHelp" class="form-text text-muted">Select Course Code of the faculty
+                                member</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="addBtn" class="btn btn-addM">
+                            Add Member
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="faculty">Loading ...</div>
+
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Record</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="Uname">ID</label>
+                        <input type="text" class="form-control" name="Uidts" id="updateIdts" aria-describedby="nameHelp"
+                            placeholder="ID" disabled="true" />
+                        <small id="nameHelp" class="form-text text-muted">ID cannot be changed</small>
+                        <input type="hidden" id="updateId" /> <br />
+                        <div class="form-group">
+                            <label for="Uname">Name</label>
+                            <input type="text" class="form-control" name="Uname" id="Uname" aria-describedby="nameHelp"
+                                placeholder="Name of the faculty member" />
+                            <small id="nameHelp" class="form-text text-muted">Enter name of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Uage">Age</label>
+                            <input type="number" class="form-control" name="Uage" id="Uage" aria-describedby="ageHelp"
+                                min="0" max="70" />
+                            <small id="ageHelp" class="form-text text-muted">Enter age of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Ugender">Gender</label>
+                            <select class="form-control" name="Ugender" id="Ugender" aria-describedby="genderHelp">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <small id="genderHelp" class="form-text text-muted">Select gender of the faculty
+                                member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Uemail">Email</label>
+                            <input type="email" class="form-control" name="Uemail" id="Uemail"
+                                aria-describedby="emailHelp" placeholder="admin@arose-niazi.me" />
+                            <small id="emailHelp" class="form-text text-muted">Enter email of the faculty member</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Ucountry">Address Country</label>
+                            <input type="text" class="form-control" name="Ucountry" id="Ucountry"
+                                aria-describedby="countryHelp" placeholder="Pakistan" />
+                            <small id="countryHelp" class="form-text text-muted">Enter country for the address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Ucity">Address City</label>
+                            <input type="text" class="form-control" name="Ucity" id="Ucity" aria-describedby="cityHelp"
+                                placeholder="Lahore" />
+                            <small id="cityHelp" class="form-text text-muted">Enter city for the address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Ustreet_address">Address</label>
+                            <input type="text" class="form-control" name="Ustreet_address" id="Ustreet_address"
+                                aria-describedby="street_addressHelp" placeholder="Billokhel H# 137M" />
+                            <small id="street_addressHelp" class="form-text text-muted">Enter street address</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="Uphone_numbers">Phone Numbers</label>
+                            <button class="btn btn-addp" onclick="addUInputEmpty()">Add</button>
+
+                            <div id="new_chqU">
+
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="Ucourse_code">Course Code</label>
+                            <select class="form-control" name="Ucourse_code" id="Ucourse_code"
+                                aria-describedby="course_codeHelp">
+                                <option>CSE100</option>
+                                <option>CSE200</option>
+                                <option>HUM100</option>
+                                <option>EE101</option>
+                                <option>MTH300</option>
+                            </select>
+                            <small id="nameHelp" class="form-text text-muted">Select Course Code of the faculty
+                                member</small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="updateSave" class="btn btn-primary">
+                            Update
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
