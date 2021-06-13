@@ -1,0 +1,11 @@
+PUT https://assign3api.arose-niazi.me/api/faculty/5 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "aeman",
+    "gender": "Female",
+    "email" : "ae",
+    "course_code" : "CSE100",
+    "phone_numbers" : ["0900-786011", "0000-158415"],
+    "Age": 30
+}
